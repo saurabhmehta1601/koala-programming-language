@@ -1,0 +1,23 @@
+{
+  "name": "language",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:all": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saurabhmehta1601/koala-A-programming-language.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saurabhmehta1601/koala-A-programming-language/issues"
+  },
+  "homepage": "https://github.com/saurabhmehta1601/koala-A-programming-language#readme",
+  "devDependencies": {
+    "jest": "^27.0.5"
+  }
+}
