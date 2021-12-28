@@ -4,15 +4,13 @@ We are not going to build a complete new programming language from scratch but s
 
 # Stages of compiling
 
-## Part 1 : Parsing
+## Part 1 : Tokenization & Parsing
 
-Take the source code (which is string) and turn it into AST .
-This can again be divide into two steps :
+### 1. Lexical Analysis aka Tokenization
 
-### 1. Lexical Analysis
+> In this step the source code string is taken as input and converted into array of tokens .
 
-In this step the source code string is taken as input and converted into array of tokens .
-The steps required are :
+The steps required for tokenization are :
 
 1. Accept the input string of code .
 2. Create variable for tracking position like cursor .
@@ -21,7 +19,15 @@ The steps required are :
 5. Check each token and see if it matches one of our new langauge types .
 6. Add it to array of tokens .
 
-### 2. Syntactic Analysis
+### 2. Syntactic Analysis aka Parsing
+
+> In this step we will turn the token into an intermediate representation or Abstract Syntax Tree (AST) .
+
+#### How are we going to build AST ??
+
+1. Iterate through the array of tokens .
+2. For each number , string , etc ., add that token to same level .
+3. For each CallExpression (i.e. function) collect the parameters and then recurse down into the function body .
 
 ## Part 2 : Transformation
 
