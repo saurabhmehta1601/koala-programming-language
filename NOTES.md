@@ -30,3 +30,7 @@ Take the source code and convert it into form you want .
 ## Part 3 : Generation
 
 Take the transformed representation and turn it into new string of code .
+
+# About Koala
+
+- Strings are surrounded by double quotes and our language only supports double quotes .
