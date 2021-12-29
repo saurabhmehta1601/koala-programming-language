@@ -1,11 +1,11 @@
-const WHITESPACE = /^\s+$/;
-const WORD = /^[a-zA-Z]+$/;
+const WHITESPACE = /\s/;
+const LETTER = /[a-zA-Z]/;
 const NUMBER = /^[0-9]+$/;
 const OPERATORS = ['-', '+', '/', '*', '%'];
 
 const isWhiteSpace = (character) => WHITESPACE.test(character);
 
-const isWord = (character) => WORD.test(character);
+const isLetter = (character) => LETTER.test(character);
 
 const isNumber = (character) => NUMBER.test(character);
 
@@ -27,6 +27,6 @@ module.exports = {
   isParanthesis,
   isOpeningParanthesis,
   isClosingParanthesis,
-  isWord,
+  isLetter,
   isWhiteSpace,
 };
