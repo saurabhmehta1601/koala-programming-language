@@ -1,4 +1,4 @@
-const WHITESPACE = /\s+/;
+const WHITESPACE = /^\s+$/;
 const WORD = /^[a-zA-Z]+$/;
 const NUMBER = /^[0-9]+$/;
 const OPERATORS = ['-', '+', '/', '*', '%'];
