@@ -1,5 +1,6 @@
+const { TYPES } = require('./constants');
 const { isOpeningParanthesis, isClosingParanthesis } = require('./identifiers');
-const { pop, peek } = require('./utils');
+const { pop } = require('./utils');
 
 // using parenthesis for guiding the depth level of token in nesting
 const parenthesize = (tokens) => {
@@ -34,19 +35,19 @@ const parse = (tokens) => {
     };
   }
 
-  if (token.type === 'Number') {
+  if (token.type === TYPES.NUMBER) {
     return {
       type: 'NumericLiteral',
       value: token.value,
     };
   }
-  if (token.type === 'String') {
+  if (token.type === TYPES.STRING) {
     return {
       type: 'StringLiteral',
       value: token.value,
     };
   }
-  if (token.type === 'Name') {
+  if (token.type === TYPES.NAME) {
     return {
       type: 'Identifier',
       name: token.value,

@@ -1,10 +1,13 @@
+const { TYPES, ERROR } = require('./constants');
+console.log('TYPES is ', TYPES);
 const {
   isParanthesis,
   isWhiteSpace,
   isNumber,
-  isWord,
+  isLetter,
   isQuote,
 } = require('./identifiers');
+
 function tokenize(input) {
   let tokens = [];
   let cursor = 0;
@@ -14,7 +17,7 @@ function tokenize(input) {
 
     if (isParanthesis(character)) {
       tokens.push({
-        type: 'Parenthesis',
+        type: TYPES.PARENTHESIS,
         value: character,
       });
       cursor++;
@@ -29,21 +32,21 @@ function tokenize(input) {
         character = input[cursor];
       }
       tokens.push({
-        type: 'Number',
+        type: TYPES.NUMBER,
         value: parseInt(number),
       });
       continue;
     }
 
-    if (isWord(character)) {
+    if (isLetter(character)) {
       let name = '';
-      while (isWord(character)) {
+      while (isLetter(character)) {
         name += character;
         cursor++;
         character = input[cursor];
       }
       tokens.push({
-        type: 'Name',
+        type: TYPES.NAME,
         value: name,
       });
       continue;
@@ -58,7 +61,7 @@ function tokenize(input) {
         cursor++;
       }
       tokens.push({
-        type: 'String',
+        type: TYPES.STRING,
         value: str,
       });
       cursor++;
@@ -70,7 +73,7 @@ function tokenize(input) {
     }
 
     // throw error since for character matching none
-    throw new Error(`${character} is not valid .`);
+    throw new Error(ERROR.SYNTAX_ERROR);
   }
 
   return tokens;

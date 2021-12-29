@@ -19,4 +19,8 @@ describe('Identifiers ', () => {
     expect(isNumber('')).toBe(false); // empty string
     expect(isNumber('   ')).toBe(false); // whitespace
   });
+  it('isLetter returns true if it is an alphabet', () => {
+    expect(isLetter('s')).toBe(true);
+    expect(isLetter('S')).toBe(true);
+  });
 });

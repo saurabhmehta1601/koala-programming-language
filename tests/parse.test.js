@@ -1,4 +1,4 @@
-const { parse } = require('../src/parse');
+const { parse } = require('../parse');
 
 describe('parse', () => {
   it('returns NumericLiteral for Number token', () => {
