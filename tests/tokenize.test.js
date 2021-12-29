@@ -1,4 +1,4 @@
-const { TYPES } = require('../src/constants');
+const { TOKEN_TYPES } = require('../src/constants');
 const tokenize = require('../src/tokenize');
 
 describe('tokenize', () => {
@@ -9,7 +9,7 @@ describe('tokenize', () => {
 
   it('throws an error if input contains invalid character', () => {
     const input = 'add @ 4';
-    expect(() => tokenize(input)).toThrow(TYPES.SYNTAX_ERROR);
+    expect(() => tokenize(input)).toThrow(TOKEN_TYPES.SYNTAX_ERROR);
   });
   it('should ignore white space completely', () => {
     const input = '                   ';
@@ -20,23 +20,23 @@ describe('tokenize', () => {
     const input = ' ()( ';
     const result = tokenize(input);
     expect(result).toEqual([
-      { type: TYPES.PARENTHESIS, value: '(' },
-      { type: TYPES.PARENTHESIS, value: ')' },
-      { type: TYPES.PARENTHESIS, value: '(' },
+      { type: TOKEN_TYPES.PARENTHESIS, value: '(' },
+      { type: TOKEN_TYPES.PARENTHESIS, value: ')' },
+      { type: TOKEN_TYPES.PARENTHESIS, value: '(' },
     ]);
   });
   it('should correctly tokenize number ', () => {
     const input = '12 14';
     const result = tokenize(input);
     expect(result).toEqual([
-      { type: TYPES.NUMBER, value: 12 },
-      { type: TYPES.NUMBER, value: 14 },
+      { type: TOKEN_TYPES.NUMBER, value: 12 },
+      { type: TOKEN_TYPES.NUMBER, value: 14 },
     ]);
   });
 
   it('should correctly tokenize strings ', () => {
     const input = ' "12 14" ';
     const result = tokenize(input);
-    expect(result).toEqual([{ type: TYPES.STRING, value: '12 14' }]);
+    expect(result).toEqual([{ type: TOKEN_TYPES.STRING, value: '12 14' }]);
   });
 });

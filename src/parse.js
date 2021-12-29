@@ -1,4 +1,4 @@
-const { TYPES } = require('./constants');
+const { TOKEN_TYPES } = require('./constants');
 const { isOpeningParanthesis, isClosingParanthesis } = require('./identifiers');
 const { pop } = require('./utils');
 
@@ -35,19 +35,19 @@ const parse = (tokens) => {
     };
   }
 
-  if (token.type === TYPES.NUMBER) {
+  if (token.type === TOKEN_TYPES.NUMBER) {
     return {
       type: 'NumericLiteral',
       value: token.value,
     };
   }
-  if (token.type === TYPES.STRING) {
+  if (token.type === TOKEN_TYPES.STRING) {
     return {
       type: 'StringLiteral',
       value: token.value,
     };
   }
-  if (token.type === TYPES.NAME) {
+  if (token.type === TOKEN_TYPES.NAME) {
     return {
       type: 'Identifier',
       name: token.value,

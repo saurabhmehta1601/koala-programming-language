@@ -1,5 +1,4 @@
-const { TYPES, ERROR } = require('./constants');
-console.log('TYPES is ', TYPES);
+const { TOKEN_TYPES, ERROR } = require('./constants');
 const {
   isParanthesis,
   isWhiteSpace,
@@ -17,7 +16,7 @@ function tokenize(input) {
 
     if (isParanthesis(character)) {
       tokens.push({
-        type: TYPES.PARENTHESIS,
+        type: TOKEN_TYPES.PARENTHESIS,
         value: character,
       });
       cursor++;
@@ -32,7 +31,7 @@ function tokenize(input) {
         character = input[cursor];
       }
       tokens.push({
-        type: TYPES.NUMBER,
+        type: TOKEN_TYPES.NUMBER,
         value: parseInt(number),
       });
       continue;
@@ -40,28 +39,27 @@ function tokenize(input) {
 
     if (isLetter(character)) {
       let name = '';
-      while (isLetter(character)) {
-        name += character;
+      let i = 0;
+      while (cursor < input.length && isLetter(input[cursor])) {
+        name += input[cursor];
         cursor++;
-        character = input[cursor];
       }
       tokens.push({
-        type: TYPES.NAME,
+        type: TOKEN_TYPES.NAME,
         value: name,
       });
       continue;
     }
 
+    // string
     if (isQuote(character)) {
       let str = '';
-      cursor++;
-      while (!isQuote(input[cursor])) {
+      while (!isQuote(input[++cursor])) {
         character = input[cursor];
         str += character;
-        cursor++;
       }
       tokens.push({
-        type: TYPES.STRING,
+        type: TOKEN_TYPES.STRING,
         value: str,
       });
       cursor++;

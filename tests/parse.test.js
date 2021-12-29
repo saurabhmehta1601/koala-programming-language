@@ -1,8 +1,11 @@
-const { parse } = require('../parse');
+const { TOKEN_TYPES } = require('../src/constants');
+const { parse } = require('../src/parse');
+
+
 
 describe('parse', () => {
   it('returns NumericLiteral for Number token', () => {
-    const input = [{ type: 'Number', value: 11 }];
+    const input = [{ type: TOKEN_TYPES.NUMBER, value: 11 }];
     const result = parse(input);
     expect(result).toEqual({
       type: 'NumericLiteral',
@@ -10,7 +13,7 @@ describe('parse', () => {
     });
   });
   it('returns StringLiteral for String token', () => {
-    const input = [{ type: 'String', value: '11' }];
+    const input = [{ type: TOKEN_TYPES.STRING, value: '11' }];
     const result = parse(input);
     expect(result).toEqual({
       type: 'StringLiteral',
@@ -18,7 +21,7 @@ describe('parse', () => {
     });
   });
   it('returns Identifier for Name token', () => {
-    const input = [{ type: 'Name', value: 'add' }];
+    const input = [{ type: TOKEN_TYPES.NAME, value: 'add' }];
     const result = parse(input);
     expect(result).toEqual({
       type: 'Identifier',

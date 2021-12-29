@@ -1,4 +1,4 @@
-const TYPES = {
+const TOKEN_TYPES = {
   STRING: 'String',
   NUMBER: 'Number',
   PARENTHESIS: 'Parenthesis',
@@ -9,4 +9,4 @@ const ERROR = {
   SYNTAX_ERROR: 'SyntaxError',
 };
 
-module.exports = { TYPES, ERROR };
+module.exports = { TOKEN_TYPES, ERROR };
