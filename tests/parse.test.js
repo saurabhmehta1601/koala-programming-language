@@ -1,4 +1,4 @@
-const { TOKEN_TYPES } = require('../src/constants');
+const { TOKEN_TYPES , AST_NODE_TYPES } = require('../src/constants');
 const { parse } = require('../src/parse');
 
 describe('parse', () => {
@@ -6,7 +6,7 @@ describe('parse', () => {
     const input = [{ type: TOKEN_TYPES.NUMBER, value: 11 }];
     const result = parse(input);
     const ast = {
-      type: 'NumericLiteral',
+      type: AST_NODE_TYPES.NUMERIC_LITERAL,
       value: 11,
     };
     expect(result).toEqual(ast);
@@ -16,7 +16,7 @@ describe('parse', () => {
     const input = [{ type: TOKEN_TYPES.STRING, value: '11' }];
     const result = parse(input);
     const ast = {
-      type: 'StringLiteral',
+      type: AST_NODE_TYPES.STRING_LITERAL,
       value: '11',
     };
     expect(result).toEqual(ast);
@@ -26,7 +26,7 @@ describe('parse', () => {
     const input = [{ type: TOKEN_TYPES.NAME, value: 'add' }];
     const result = parse(input);
     expect(result).toEqual({
-      type: 'Identifier',
+      type: AST_NODE_TYPES.IDENTIFIER,
       name: 'add',
     });
   });

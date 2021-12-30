@@ -5,8 +5,15 @@ const TOKEN_TYPES = {
   NAME: 'Name',
 };
 
+const AST_NODE_TYPES = {
+  CALL_EXPRESSION: 'CallExpression' ,
+  NUMERIC_LITERAL: 'NumericLiteral' ,
+  STRING_LITERAL: 'StringLiteral' ,
+  IDENTIFIER: 'Identifier'
+}
+
 const ERROR = {
   SYNTAX_ERROR: 'SyntaxError',
 };
 
-module.exports = { TOKEN_TYPES, ERROR };
+module.exports = { TOKEN_TYPES, ERROR , AST_NODE_TYPES };
