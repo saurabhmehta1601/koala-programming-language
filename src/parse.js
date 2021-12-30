@@ -1,15 +1,13 @@
-const { TOKEN_TYPES } = require('./constants');
 const { isOpeningParanthesis, isClosingParanthesis } = require('./identifiers');
-const { pop } = require('./utils');
+const { peek, pop } = require('./utils');
 
-// using parenthesis for guiding the depth level of token in nesting
 const parenthesize = (tokens) => {
-  if (tokens.length === 0) return tokens;
   const token = pop(tokens);
 
   if (isOpeningParanthesis(token.value)) {
     const expression = [];
-    while (!isClosingParanthesis(token.value)) {
+
+    while (!isClosingParanthesis(peek(tokens).value)) {
       expression.push(parenthesize(tokens));
     }
 
@@ -17,17 +15,12 @@ const parenthesize = (tokens) => {
     return expression;
   }
 
-  return tokens;
+  return token;
 };
 
 const parse = (tokens) => {
-  if (!Array.isArray(tokens)) return [];
-  if (tokens.length < 1) return [];
-
-  const token = pop(tokens);
-
-  if (Array.isArray(token)) {
-    const [first, ...rest] = token;
+  if (Array.isArray(tokens)) {
+    const [first, ...rest] = tokens;
     return {
       type: 'CallExpression',
       name: first.value,
@@ -35,19 +28,23 @@ const parse = (tokens) => {
     };
   }
 
-  if (token.type === TOKEN_TYPES.NUMBER) {
+  const token = tokens;
+
+  if (token.type === 'Number') {
     return {
       type: 'NumericLiteral',
       value: token.value,
     };
   }
-  if (token.type === TOKEN_TYPES.STRING) {
+
+  if (token.type === 'String') {
     return {
       type: 'StringLiteral',
       value: token.value,
     };
   }
-  if (token.type === TOKEN_TYPES.NAME) {
+
+  if (token.type === 'Name') {
     return {
       type: 'Identifier',
       name: token.value,
