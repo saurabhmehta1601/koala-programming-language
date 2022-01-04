@@ -1,5 +1,6 @@
 const { isOpeningParanthesis, isClosingParanthesis } = require('./identifiers');
 const { peek, pop } = require('./utils');
+const { AST_NODE_TYPES, TOKEN_TYPES } = require('./constants');
 
 const parenthesize = (tokens) => {
   const token = pop(tokens);
@@ -22,7 +23,7 @@ const parse = (tokens) => {
   if (Array.isArray(tokens)) {
     const [first, ...rest] = tokens;
     return {
-      type: 'CallExpression',
+      type: AST_NODE_TYPES.CALL_EXPRESSION,
       name: first.value,
       arguments: rest.map(parse),
     };
@@ -30,23 +31,23 @@ const parse = (tokens) => {
 
   const token = tokens;
 
-  if (token.type === 'Number') {
+  if (token.type === TOKEN_TYPES.NUMBER) {
     return {
-      type: 'NumericLiteral',
+      type: AST_NODE_TYPES.NUMERIC_LITERAL,
       value: token.value,
     };
   }
 
-  if (token.type === 'String') {
+  if (token.type === TOKEN_TYPES.STRING) {
     return {
-      type: 'StringLiteral',
+      type: AST_NODE_TYPES.STRING_LITERAL,
       value: token.value,
     };
   }
 
-  if (token.type === 'Name') {
+  if (token.type === TOKEN_TYPES.NAME) {
     return {
-      type: 'Identifier',
+      type: AST_NODE_TYPES.IDENTIFIER,
       name: token.value,
     };
   }

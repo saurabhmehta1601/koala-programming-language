@@ -29,9 +29,11 @@ The steps required for tokenization are :
 2. For each number , string , etc ., add that token to same level .
 3. For each CallExpression (i.e. function) collect the parameters and then recurse down into the function body .
 
+> Note: We are trying to create the ast node representation close to the one used by babel so we can laverage it .
+
 ## Part 2 : Transformation
 
-Take the source code and convert it into form you want .
+Take the ast node and convert it into form you want .
 
 ## Part 3 : Generation
 
