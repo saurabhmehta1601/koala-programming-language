@@ -39,6 +39,20 @@ Take the ast node and convert it into form you want .
 
 Take the transformed representation and turn it into new string of code .
 
-# About Koala
+# Facts About Koala
 
 - Strings are surrounded by double quotes and our language only supports double quotes .
+
+- CallExpression are surrouded by open and close small brackets .
+
+# Files and their roles
+
+1. The string which is our koala code is converted into token array by `tokenize `function .`Identifiers` helps in scaning the code to find numbers , string and keywords.
+
+2. Token array is then passed as argument to `parse` function which converts it into Abstract Syntax Tree (AST) node .
+
+3. All the builtin functions are defined in `standard-lib` (environment) .
+
+4. `Evaluate` function simply returns the value if ast node type is StringLiteral or NumricLiteral else for CallExpression it returns its value by using and finding the function defined in standard lib environment using the ast name property .
+
+5. In order to avoid spelling mistakes while using same strings in different files and functions we stored the string values in `constants` such as AST_NODE_TYPES, TOKEN_TYPES .
