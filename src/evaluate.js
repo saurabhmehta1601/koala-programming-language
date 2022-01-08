@@ -10,13 +10,6 @@ function apply(node) {
   return fn(...args);
 }
 
-function getIdentifier(node) {
-  if (environment[node.name]) {
-    return environment[node.name];
-  }
-  throw new ReferenceError(`${node.name} is not`);
-}
-
 function evaluate(node) {
   if (node.type === AST_NODE_TYPES.CALL_EXPRESSION) {
     return apply(node);
@@ -27,6 +20,14 @@ function evaluate(node) {
   if (node.value) {
     return node.value;
   }
+
+  function getIdentifier(node) {
+    if (environment[node.name]) {
+      return environment[node.name];
+    }
+    throw new ReferenceError(`${node.name} is not`);
+  }
+
 }
 
 module.exports = { evaluate };
