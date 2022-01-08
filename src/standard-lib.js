@@ -12,6 +12,7 @@ const log = console.log;
 const PI = Math.PI;
 const pow = Math.pow;
 const sqrt = Math.sqrt;
+const max = (...args) => Math.max(...args)
 
 exports.environment = {
   add,
@@ -23,4 +24,5 @@ exports.environment = {
   PI,
   pow,
   sqrt,
+  max
 };
