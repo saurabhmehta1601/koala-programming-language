@@ -56,3 +56,7 @@ Take the transformed representation and turn it into new string of code .
 4. `Evaluate` function simply returns the value if ast node type is StringLiteral or NumricLiteral else for CallExpression it returns its value by using and finding the function defined in standard lib environment using the ast name property .
 
 5. In order to avoid spelling mistakes while using same strings in different files and functions we stored the string values in `constants` such as AST_NODE_TYPES, TOKEN_TYPES .
+
+6. `traverse` function traverses through the AST node and `visitor` can be uses to manipulate AST .
+
+7. `special forms` such as node with name define (for variable assignment) are tranformed using `transform` method .
