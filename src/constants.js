@@ -6,11 +6,14 @@ const TOKEN_TYPES = {
 };
 
 const AST_NODE_TYPES = {
+  // from KOALA
   CALL_EXPRESSION: 'CallExpression',
   NUMERIC_LITERAL: 'NumericLiteral',
   STRING_LITERAL: 'StringLiteral',
   IDENTIFIER: 'Identifier',
   VARIABLE_DECLARATOR: 'VariableDeclarator',
+  // from BABEL
+  VARIABLE_DECLARATION: 'VariableDeclaration',
 };
 
 const ERROR = {
