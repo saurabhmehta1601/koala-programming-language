@@ -1,0 +1,30 @@
+const { traverse } = require('./traverse');
+const {
+  AST_NODE_TYPES: { CALL_EXPRESSION, VARIABLE_DECLARATOR },
+} = require('./constants');
+
+const transform = (node) => {
+  traverse(node, {
+    [CALL_EXPRESSION]: {
+      enter({ node }) {
+        if (specialForms[node.name]) {
+          specialForms[node.name](node);
+        }
+      },
+    },
+  });
+  return node;
+};
+
+const specialForms = {
+  define(node) {
+    const [identifier, assignment] = node.arguments;
+    node.type = VARIABLE_DECLARATOR;
+    node.identifier = identifier;
+    node.assignment = assignment;
+    delete node.name;
+    delete node.arguments;
+  },
+};
+
+module.exports = { specialForms, transform };
